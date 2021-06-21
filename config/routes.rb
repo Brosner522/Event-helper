@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  resources :events, only: [:index, :show, :create, :update, :destroy]
+  resources :events, except: [:new, :edit]
   resources :invitations, only: [:index]
   resources :users, only: [:index, :show, :create]
   # Routing logic: fallback requests for React Router.

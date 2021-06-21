@@ -1,24 +1,33 @@
 class UsersController < ApplicationController
 
     def index 
-        users = User.all 
+        users = User.all
         render json: users 
     end
 
     def show 
         user = User.find(params[:id])
-        render json: user, status: :ok
+        if user 
+            render json: user, status: :ok
+        else 
+            render json: {error: "no user found!"}, status: :not_found 
+        end
     end
 
     def create 
-        user = User.create(user_params)
-        render json: user, status: :created 
+        user = User.new(user_params)
+        if user.valid?
+            user.save
+            render json: user, status: :created
+        else 
+            render json: {error: user.errors.full_messages}
+        end
     end
 
 
     private 
     
     def user_params 
-        params.permit(:username, :age, :profile_img, :password)
+        params.permit(:username, :age, :profile_img, :password_digest)
     end
 end
