@@ -46,7 +46,7 @@ class EventsController < ApplicationController
             event.destroy
             render json: {}, status: :no_content
         else 
-            render json: {error: "no event found!"}
+            render json: {error: "no event found!"}, status: :not_found
         end
     end
 

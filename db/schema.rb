@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2021_06_17_181425) do
 
   create_table "events", force: :cascade do |t|
     t.string "name"
-    t.string "date"
+    t.date "date"
     t.string "time"
     t.string "location"
     t.integer "price"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2021_06_17_181425) do
   end
 
   create_table "invitations", force: :cascade do |t|
-    t.string "date"
+    t.date "date"
     t.integer "user_id"
     t.integer "event_id"
     t.datetime "created_at", precision: 6, null: false
