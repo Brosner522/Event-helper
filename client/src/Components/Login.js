@@ -6,7 +6,7 @@ export default class Login extends Component {
     password: "",
     age: "",
     profile_img: "",
-    password_digest: ""
+    password_digest: "",
   };
 
   handleLogin = (e) => {
@@ -23,77 +23,91 @@ export default class Login extends Component {
     } else alert("Invalid User");
   };
 
-  handleSignup = (e) => {
+  handleSignup = () => {
     let newUser = {
-        username: this.state.username,
-        age: this.state.age,
-        profile_img: this.state.profile_img,
-        password_digest: this.state.password_digest
-    }
-    
+      username: this.state.username,
+      age: this.state.age,
+      profile_img: this.state.profile_img,
+      password_digest: this.state.password_digest,
+    };
+
     fetch("http://localhost:3000/users", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newUser),
-        })
-        .then ((res) => {
-            if(res.status === 200) {
-                res.json()
-            } else if (res.status === 400) {
-                alert("User already exists!")
-            } 
-            })
-    }
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newUser),
+    }).then((res) => {
+      if (res.status === 200) {
+        res.json();
+      } else if (res.status === 400) {
+        alert("User already exists!");
+      }
+    });
+  };
 
   render() {
     return (
-      <div>
-        <form onSubmit={(e) => this.handleLogin(e)} className="login">
+      <div className="forms">
+        <form className="login" onSubmit={(e) => this.handleLogin(e)}>
           <label>
             Log In
-            <input
-              type="text"
-              placeholder="Enter your username"
-              username="username"
-            />
-            <input
-              type="text"
-              placeholder="Enter your password"
-              password="password"
-            />
+            <p className="login-input">
+              <input
+                type="text"
+                placeholder="Enter your username"
+                username="username"
+              />
+            </p>
+            <p className="login-input">
+              <input
+                type="text"
+                placeholder="Enter your password"
+                password="password"
+              />
+            </p>
           </label>
-          <input className="login-btn" type="submit" value="Log In" />
+          <p className="login-input">
+            <input className="login-btn" type="submit" value="Log In" />
+          </p>
         </form>
 
-        <form>
-          <label onSubmit={this.handleSignUp}>
+        <form className="signup" onSubmit={this.handleSignUp}>
+          <label>
             Sign Up
-            <input
-              type="text"
-              placeholder="Choose a user name"
-              username="username"
-              value={this.state.username}
-
-            />
-            <input
-              type="number"
-              placeholder="Please enter your age"
-              age="age"
-            />
-            <input
-              type="url"
-              placeholder="Upload a picture"
-              profile_img="profile image"
-            />
-            <input
-              type="text"
-              placeholder="Choose a password"
-              password="password"
-            />
+            <p className="login-input">
+              <input
+                type="text"
+                placeholder="Choose a user name"
+                username="username"
+                value={this.state.username}
+              />
+            </p>
+            <p className="login-input">
+              <input
+                type="number"
+                placeholder="Please enter your age"
+                age="age"
+              />
+            </p>
+            <p className="login-input">
+              <input
+                type="url"
+                placeholder="Upload a picture"
+                profile_img="profile image"
+              />
+            </p>
+            <p className="login-input">
+              <input
+                type="text"
+                placeholder="Choose a password"
+                password="password"
+              />
+            </p>
           </label>
-          <input className="signup-btn" type="submit" value="Sign Up" />
+          <p className="login-input">
+            <input className="signup-btn" type="submit" value="Sign Up" />
+          </p>
         </form>
       </div>
     );
