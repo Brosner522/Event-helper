@@ -16,3 +16,85 @@ img {
   width: auto;
   height: 200px;
 }
+
+.login-btn, .signup-btn {
+  background-color: #5b76c0;
+  border-color: black;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.container-navbar {
+  background-color: white;
+  font-weight: bolder;
+  height: auto;
+  margin: 20px 20px 20px;
+  width: 500%;
+}
+
+.container-page {
+  background: url("https://media.istockphoto.com/photos/brown-corrugated-board-with-a-horizontal-texture-for-packaging-made-picture-id1199868837?k=6&m=1199868837&s=612x612&w=0&h=2qjIWqrJRPN4y6kcVNiHuFuVW-bp60aBoCJETgoOZ6I=") ;
+  /* display: flex;
+  justify-content: space-around;
+  flex-basis: auto; */
+  /* flex-direction: row; */
+  /* flex-wrap: nowrap; */
+}
+
+.event {
+  background-color: white;
+  border-radius: 16px;
+  border-style: solid;
+  display: inline-block;
+  vertical-align: middle;
+  align-content: center;
+  flex-wrap: wrap;
+  font-weight: bold;
+  height: 400px;
+  width: 400px;
+  padding: 20px 20px 20px;
+  margin: 20px 20px 20px;
+}
+
+.event-page {
+  background: url("https://media.istockphoto.com/photos/brown-corrugated-board-with-a-horizontal-texture-for-packaging-made-picture-id1199868837?k=6&m=1199868837&s=612x612&w=0&h=2qjIWqrJRPN4y6kcVNiHuFuVW-bp60aBoCJETgoOZ6I=") ;
+}
+
+.event-tile {
+  background-color: white;
+  border-radius: 16px;
+  border-style: solid;
+  display: inline-block;
+  vertical-align: middle;
+  align-content: center;
+  flex-wrap: wrap;
+  font-weight: bold;
+  height: auto;
+  width: 500px;
+  padding: 20px 20px 20px;
+  margin: 20px 20px 20px;
+}
+
+.attendees {
+  font-weight: bolder;
+  color: red;
+  background-color: white;
+  padding: 20px 20px 20px;
+
+}
+
+.attendee {
+  background-color: white;
+  border-radius: 16px;
+  border-style: dashed;
+  width: 200px;
+  align-content: center;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 10px 10px 10px;
+}
+

@@ -1,4 +1,4 @@
-import logo from "./logo.svg";
+
 import "./App.css";
 import { Route, Switch } from "react-router-dom";
 import { Component } from "react";
@@ -11,7 +11,8 @@ class App extends Component {
   state = {
     events: [],
     users: [],
-    selectedEvent: []
+    selectedEvent: [],
+    userLogIn: []
   };
 
   selectEvent = (eventObj) => {
@@ -19,6 +20,13 @@ class App extends Component {
       selectedEvent: eventObj
     })
     this.props.history.push("/event");
+  }
+
+  handleLogInUser = (loginUserObj) => {
+    this.setState({
+      userLogIn: loginUserObj
+    }, () => console.log(this.state.userLogIn))
+    
   }
 
   componentDidMount() {
@@ -41,7 +49,7 @@ class App extends Component {
           <Switch>
           <Route 
             exact path = "/login"
-            component={(props) => <Login {...props}/>}
+            component={(props) => <Login users={this.state.users} handleLogInUser={this.handleLogInUser} userLogIn = {this.state.userLogIn} {...props}/>}
             />
             <Route
               exact
