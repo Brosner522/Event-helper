@@ -23,28 +23,7 @@ export default class Login extends Component {
     } else alert("Invalid User");
   };
 
-  handleSignup = () => {
-    let newUser = {
-      username: this.state.username,
-      age: this.state.age,
-      profile_img: this.state.profile_img,
-      password_digest: this.state.password_digest,
-    };
-
-    fetch("http://localhost:3000/users", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newUser),
-    }).then((res) => {
-      if (res.status === 200) {
-        res.json();
-      } else if (res.status === 400) {
-        alert("User already exists!");
-      }
-    });
-  };
+  
 
   render() {
     return (
@@ -72,7 +51,7 @@ export default class Login extends Component {
           </p>
         </form>
 
-        <form className="signup" onSubmit={this.handleSignUp}>
+        <form className="signup" onSubmit={(e) => this.handleSignUp(e)}>
           <label>
             Sign Up
             <p className="login-input">
@@ -80,7 +59,6 @@ export default class Login extends Component {
                 type="text"
                 placeholder="Choose a user name"
                 username="username"
-                value={this.state.username}
               />
             </p>
             <p className="login-input">

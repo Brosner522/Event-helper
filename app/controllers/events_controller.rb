@@ -2,7 +2,7 @@ class EventsController < ApplicationController
 
     # get all events
     def index 
-        events = Event.all 
+        events = Event.all
         render json: events 
     end
 

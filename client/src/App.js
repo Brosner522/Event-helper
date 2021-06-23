@@ -26,8 +26,33 @@ class App extends Component {
     this.setState({
       userLogIn: loginUserObj
     }, () => console.log(this.state.userLogIn))
-    
   }
+
+  handleSignup = (e) => {
+    debugger;
+    e.preventDefault();
+    let newUser = {
+      username: this.state.username,
+      age: this.state.age,
+      profile_img: this.state.profile_img,
+      password_digest: this.state.password_digest,
+    };
+
+    fetch("http://localhost:3000/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newUser),
+    }).then((res) => {
+      if (res.status === 200) {
+        alert("Please Sign In")
+        res.json();
+      } else if (res.status === 400) {
+        alert("User already exists!");
+      }
+    });
+  };
 
   componentDidMount() {
     fetch("http://localhost:3000/events")
@@ -49,7 +74,7 @@ class App extends Component {
           <Switch>
           <Route 
             exact path = "/login"
-            component={(props) => <Login users={this.state.users} handleLogInUser={this.handleLogInUser} userLogIn = {this.state.userLogIn} {...props}/>}
+            component={(props) => <Login users={this.state.users} handleSignUp={this.handleSignup} handleLogInUser={this.handleLogInUser} userLogIn = {this.state.userLogIn} {...props}/>}
             />
             <Route
               exact
