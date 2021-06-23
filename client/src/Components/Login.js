@@ -17,7 +17,7 @@ export default class Login extends Component {
     });
     if (filteredArray.length > 0) {
       this.props.handleLogInUser(filteredArray);
-      this.props.history.push("/");
+      this.props.history.push("/events");
       alert(`Welcome back ${filteredArray[0].username}`);
     } else alert("Invalid User");
   };

@@ -24,7 +24,6 @@ class UsersController < ApplicationController
             render json: {user: user, token: token}, status: :created
         else 
             render json: {error: user.errors.full_messages}, status: 400
-            byebug
         end
     end
 

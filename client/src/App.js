@@ -16,6 +16,10 @@ class App extends Component {
     userLogIn: []
   };
 
+  handleHome = () => {
+    this.props.history.push("/");
+  };
+
   selectEvent = (eventObj) => {
     this.setState({
       selectedEvent: eventObj
@@ -53,14 +57,15 @@ class App extends Component {
   render() {
     return (
         <div className="App">
+          <NavBar handleHome={this.handleHome}/>
           <Switch>
           <Route 
-            exact path = "/login"
+            exact path = "/"
             component={(props) => <Login addNewSignup= {this.addNewSignup} users={this.state.users} handleSignUp={this.handleSignup} handleLogInUser={this.handleLogInUser} userLogIn = {this.state.userLogIn} {...props}/>}
             />
             <Route
               exact
-              path="/"
+              path="/events"
               component={(props) => <EventContainer {...props} selectEvent={this.selectEvent} events={this.state.events} />}
               />
             <Route

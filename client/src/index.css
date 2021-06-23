@@ -32,7 +32,6 @@ img {
 }
 
 .event {
-  background-color: white;
   background: url("https://cdn.hipwallpaper.com/i/11/66/NSr6UK.jpg");
   border-radius: 16px;
   border-style: solid;
@@ -52,7 +51,7 @@ img {
 }
 
 .event-tile {
-  background-color: white;
+  background: url("https://cdn.hipwallpaper.com/i/11/66/NSr6UK.jpg");
   border-radius: 16px;
   border-style: solid;
   display: inline-block;
@@ -119,4 +118,23 @@ label {
 
 input {
   border-color: black;
+}
+
+.navbar {
+  background: white
+}
+
+.navbar-btn {
+  background-color: #5b76c0;
+  border-color: black;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 16px;
+  font-size: 12px;
+  margin-left: 20px;
+  margin-right: 20px
 }
