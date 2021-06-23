@@ -8,16 +8,47 @@ import EventDetails from './Components/EventDetails';
 import EventContainer from './Components/EventContainer';
 import NavBar from './Components/NavBar';
 
+
 class App extends Component {
   state = {
     events: [],
     users: [],
     selectedEvent: [],
-    userLogIn: []
+    userLogIn: [],
   };
 
   handleHome = () => {
     this.props.history.push("/");
+  };
+
+  addEvent = (newEvent) => {
+    this.setState({
+      events: [...this.state.events, newEvent],
+    });
+  };
+
+  createEvent = (newEvent) => {
+    console.log(newEvent)
+    const reqMethod = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newEvent),
+    };
+
+    fetch("http://localhost:3000/events", reqMethod)
+      .then((res) => res.json())
+      .then((returnEvent) => {
+        console.log(returnEvent.errors)
+        if ( returnEvent.errors.length > 0 ) {
+        alert (returnEvent.errors.toString()) }
+        else { 
+        let events = [...this.state.events, returnEvent];
+        this.setState({
+          events: events,
+        });}
+      });
   };
 
   selectEvent = (eventObj) => {
@@ -57,7 +88,8 @@ class App extends Component {
   render() {
     return (
         <div className="App">
-          <NavBar handleHome={this.handleHome}/>
+          <NavBar createEvent={this.createEvent} handleHome={this.handleHome} handleClick={this.handleClick} userLogIn={this.state.userLogIn}/>
+         
           <Switch>
           <Route 
             exact path = "/"
