@@ -18,12 +18,37 @@ export default class Login extends Component {
     if (filteredArray.length > 0) {
       this.props.handleLogInUser(filteredArray);
       this.props.history.push("/");
-      console.log(filteredArray);
       alert(`Welcome back ${filteredArray[0].username}`);
     } else alert("Invalid User");
   };
 
-  
+  handleSignup = (e) => {
+    e.preventDefault();
+    let newUser = {
+      username: this.state.username,
+      age: this.state.age,
+      profile_img: this.state.profile_img,
+      password_digest: this.state.password_digest,
+    };
+
+    fetch("http://localhost:3000/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newUser),
+    }).then((res) => {
+      console.log(res.status)
+      console.log(res.json().error)
+      if (res.status === 201) {
+        alert("You can now log in")
+        this.props.addNewSignup(newUser);
+      } else if (res.status === 400) {
+        alert(res.json());
+      }
+    });
+  };
+
 
   render() {
     return (
@@ -51,7 +76,7 @@ export default class Login extends Component {
           </p>
         </form>
 
-        <form className="signup" onSubmit={(e) => this.handleSignUp(e)}>
+        <form className="signup" onSubmit={(e) => this.handleSignup(e)}>
           <label>
             Sign Up
             <p className="login-input">
@@ -59,6 +84,8 @@ export default class Login extends Component {
                 type="text"
                 placeholder="Choose a user name"
                 username="username"
+                value={this.state.username}
+                onChange={(e)=> this.setState({username: e.target.value.toLowerCase()})}
               />
             </p>
             <p className="login-input">
@@ -66,6 +93,8 @@ export default class Login extends Component {
                 type="number"
                 placeholder="Please enter your age"
                 age="age"
+                value={this.state.age}
+                onChange={(e) => this.setState({age: e.target.value})}
               />
             </p>
             <p className="login-input">
@@ -73,6 +102,8 @@ export default class Login extends Component {
                 type="url"
                 placeholder="Upload a picture"
                 profile_img="profile image"
+                value={this.state.profile_img}
+                onChange={(e) => this.setState({profile_img: e.target.value})}
               />
             </p>
             <p className="login-input">
@@ -80,6 +111,8 @@ export default class Login extends Component {
                 type="text"
                 placeholder="Choose a password"
                 password="password"
+                value={this.state.password_digest}
+                onChange={(e) => this.setState({password_digest: e.target.value})}
               />
             </p>
           </label>

@@ -4,7 +4,7 @@ class EventContainer extends Component {
   render() {
     return (
       <div className="container-page">
-        <navbar className="container-navbar">This is the nav bar</navbar>
+        
         <div className="event-container">
           {this.props.events.map((eventObj) => (
             <div
