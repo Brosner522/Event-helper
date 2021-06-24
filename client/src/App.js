@@ -12,7 +12,7 @@ class App extends Component {
     events: [],
     users: [],
     selectedEvent: [],
-    userLogIn: [],
+    userLogIn: []
   };
 
   handleLogout = () => {
@@ -26,11 +26,11 @@ class App extends Component {
       : this.props.history.push("/");
   };
 
-  addEvent = (newEvent) => {
-    this.setState({
-      events: [...this.state.events, newEvent],
-    });
-  };
+  // addEvent = (newEvent) => {
+  //   this.setState({
+  //     events: [...this.state.events, newEvent]
+  //   });
+  // };
 
   createEvent = (newEvent) => {
     console.log(newEvent);
@@ -77,11 +77,34 @@ class App extends Component {
   };
 
   handleJoinEvent = (userLogIn) => {
-    console.log("here");
+    console.log(userLogIn);
+    console.log(this.state.events)
+
+    //selected event
+    let oldUsers = this.state.selectedEvent.users; 
+    let newUsers = [...oldUsers, userLogIn[0]];
+
+    let updatedEvent = this.state.selectedEvent
+    updatedEvent.users = newUsers;
+
     this.setState({
-      users: [...this.state.users, userLogIn],
+      selectedEvent: updatedEvent,
     });
-  };
+  };  
+
+  handleLeaveEvent = (userLogIn) => {
+
+     let oldUsers = this.state.selectedEvent.users; 
+     let newUsers = oldUsers.filter((user) => user !== userLogIn[0])
+ 
+     let updatedEvent = this.state.selectedEvent
+     updatedEvent.users = newUsers;
+ 
+     this.setState({
+       selectedEvent: updatedEvent,
+     });
+
+  }
 
   componentDidMount() {
     fetch("http://localhost:3000/events")
@@ -144,7 +167,7 @@ class App extends Component {
                 {...props}
                 selectedEvent={this.state.selectedEvent}
                 userLogIn={this.state.userLogIn}
-                handleJoinEvent={this.handleJoinEvent}
+                handleJoinEvent={this.handleJoinEvent} handleLeaveEvent={this.handleLeaveEvent}
               />
             )}
           />

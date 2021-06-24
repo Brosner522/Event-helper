@@ -17,7 +17,7 @@ display: false
       
     return (
       <div className="navbar">
-        <h1 onClick={() => this.props.handleHome(this.props)}>The Poster</h1>
+        <h1 onClick={() => this.props.handleHome(this.props)}>Poster</h1>
          
         {this.props.userLogIn.length > 0 ?
         (<><button className="navbar-btn" onClick={this.handleClick}>
