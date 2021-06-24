@@ -2,6 +2,10 @@ import React, { Component } from "react";
 
 class EventContainer extends Component {
   render() {
+    console.log(this.props.userLogIn.length)
+    if (this.props.userLogIn.length === 0) {
+      this.props.history.push("/")
+    }
     return (
       <div className="container-page">
         

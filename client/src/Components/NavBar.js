@@ -5,6 +5,7 @@ export default class NavBar extends Component {
    state={
 display: false
    }
+
     handleClick = () => {
         let newDisplay = !this.state.display;
         this.setState({
@@ -19,15 +20,20 @@ display: false
         <h1 onClick={() => this.props.handleHome(this.props)}>The Poster</h1>
          
         {this.props.userLogIn.length > 0 ?
-        (<button className="navbar-btn" onClick={this.handleClick}>
+        (<><button className="navbar-btn" onClick={this.handleClick}>
           Add an Event
-        </button>)
+        </button>
+        <img className="navbar-img" alt="profile" src={this.props.userLogIn[0].profile_img}/>
+        <button className="navbar-btn" onClick={() => this.props.handleLogout(this.props)} >Log out</button>
+        </>)
         : null }
 
         {this.state.display ? (
           <EventForm handleClick={this.handleClick} createEvent={this.props.createEvent} />
         ) : null} 
-       
+
+        
+
       </div>
     );
   }

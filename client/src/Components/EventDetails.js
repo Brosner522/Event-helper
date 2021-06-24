@@ -6,6 +6,7 @@ class EventDetails extends Component {
     return (
       <div className="event-page">
           <div className="event-tile">
+            <button onClick={() => this.props.handleJoinEvent(this.userLogIn)}className="navbar-btn">join</button>
         <h2> {eventObj.name} </h2>
         <img alt="Event poster" src={eventObj.img} />
         <p>Description: {eventObj.description}</p>
