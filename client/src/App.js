@@ -11,9 +11,18 @@ class App extends Component {
   state = {
     events: [],
     users: [],
-    selectedEvent: [],
+    selectedEvent: {},
     userLogIn: []
   };
+
+  deleteEvent = (eventId) => {
+    this.setState({
+      selectedEvent: {},
+      events: this.state.events.filter(event => eventId !== event.id)
+    })
+    this.props.history.push("/events")
+    // let eventToDelete = this.state.selectedEvent[0]
+  }
 
   handleLogout = () => {
     this.props.history.push("/");
@@ -155,7 +164,7 @@ class App extends Component {
                 {...props}
                 userLogIn={this.state.userLogIn}
                 selectEvent={this.selectEvent}
-                events={this.state.events}
+                events={this.state.events} 
               />
             )}
           />
@@ -167,7 +176,10 @@ class App extends Component {
                 {...props}
                 selectedEvent={this.state.selectedEvent}
                 userLogIn={this.state.userLogIn}
-                handleJoinEvent={this.handleJoinEvent} handleLeaveEvent={this.handleLeaveEvent}
+                handleJoinEvent={this.handleJoinEvent} 
+                handleLeaveEvent={this.handleLeaveEvent} 
+                deleteEvent={this.deleteEvent}
+                // users={this.state.users} 
               />
             )}
           />

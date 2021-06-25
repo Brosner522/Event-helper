@@ -55,6 +55,6 @@ class EventsController < ApplicationController
 
     # create helper 
     def event_params
-        params.permit(:name, :date, :time, :location, :price, :description, :img)
+        params.permit(:name, :date, :time, :location, :price, :description, :img, :user_id)
     end
 end

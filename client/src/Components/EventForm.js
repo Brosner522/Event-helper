@@ -27,7 +27,8 @@ export default class EventForm extends Component {
         location: this.state.location,
         price: this.state.price,
         description: this.state.description,
-        img: this.state.img
+        img: this.state.img,
+        user_id: this.props.userLogIn[0].id
         }
         this.props.createEvent(newEvent)
         this.props.handleClick()

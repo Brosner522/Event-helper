@@ -29,7 +29,7 @@ display: false
         : null }
 
         {this.state.display ? (
-          <EventForm handleClick={this.handleClick} createEvent={this.props.createEvent} />
+          <EventForm handleClick={this.handleClick} createEvent={this.props.createEvent} userLogIn={this.props.userLogIn} />
         ) : null} 
 
         

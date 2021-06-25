@@ -38,88 +38,104 @@ export default class Login extends Component {
       },
       body: JSON.stringify(newUser),
     }).then((res) => {
-      console.log(res.status)
-      console.log(res.json().error)
       if (res.status === 201) {
-        alert("You can now log in")
-        this.props.addNewSignup(newUser);
+        res.json()
+          .then(data => {
+            const user = data.user;
+            alert("You can now log in");
+            this.props.addNewSignup({id: user.id, age:user.age, profile_img:user.profile_img, username: user.username });
+          })
       } else if (res.status === 400) {
-        alert(res.json());
+        alert("Please try again");
       }
     });
   };
-
 
   render() {
     return (
       <div className="forms">
         <form className="login" onSubmit={(e) => this.handleLogin(e)}>
           <label>
-            Log In
+            Log In{" "}
             <p className="login-input">
               <input
                 type="text"
                 placeholder="Enter your username"
                 username="username"
               />
-            </p>
+            </p>{" "}
             <p className="login-input">
               <input
-                type="text"
+                type="password"
                 placeholder="Enter your password"
                 password="password"
               />
-            </p>
-          </label>
+            </p>{" "}
+          </label>{" "}
           <p className="login-input">
             <input className="login-btn" type="submit" value="Log In" />
-          </p>
-        </form>
-
+          </p>{" "}
+        </form>{" "}
         <form className="signup" onSubmit={(e) => this.handleSignup(e)}>
           <label>
-            Sign Up
+            Sign Up{" "}
             <p className="login-input">
               <input
                 type="text"
                 placeholder="Choose a user name"
                 username="username"
                 value={this.state.username}
-                onChange={(e)=> this.setState({username: e.target.value.toLowerCase()})}
-              />
-            </p>
+                onChange={(e) =>
+                  this.setState({
+                    username: e.target.value.toLowerCase(),
+                  })
+                }
+              />{" "}
+            </p>{" "}
             <p className="login-input">
               <input
                 type="number"
                 placeholder="Please enter your age"
                 age="age"
                 value={this.state.age}
-                onChange={(e) => this.setState({age: e.target.value})}
-              />
-            </p>
+                onChange={(e) =>
+                  this.setState({
+                    age: e.target.value,
+                  })
+                }
+              />{" "}
+            </p>{" "}
             <p className="login-input">
               <input
                 type="url"
                 placeholder="Upload a picture"
                 profile_img="profile image"
                 value={this.state.profile_img}
-                onChange={(e) => this.setState({profile_img: e.target.value})}
-              />
-            </p>
+                onChange={(e) =>
+                  this.setState({
+                    profile_img: e.target.value,
+                  })
+                }
+              />{" "}
+            </p>{" "}
             <p className="login-input">
               <input
-                type="text"
+                type="password"
                 placeholder="Choose a password"
                 password="password"
                 value={this.state.password_digest}
-                onChange={(e) => this.setState({password_digest: e.target.value})}
-              />
-            </p>
-          </label>
+                onChange={(e) =>
+                  this.setState({
+                    password_digest: e.target.value,
+                  })
+                }
+              />{" "}
+            </p>{" "}
+          </label>{" "}
           <p className="login-input">
             <input className="signup-btn" type="submit" value="Sign Up" />
-          </p>
-        </form>
+          </p>{" "}
+        </form>{" "}
       </div>
     );
   }

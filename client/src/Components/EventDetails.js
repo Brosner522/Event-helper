@@ -6,27 +6,37 @@ class EventDetails extends Component {
     attendance: false
   }
 
-attendEvent = (user) => {
-  let newValue = !this.state.attendance
-  this.setState({
-    attendance: newValue
+  attendEvent = (user) => {
+    let newValue = !this.state.attendance
+    this.setState({
+      attendance: newValue
+    })
+    this.props.handleJoinEvent(user)
+  }
+
+  leaveEvent = (user) => {
+    this.setState({
+      attendance: false
+    })
+    this.props.handleLeaveEvent(user)
+  }
+
+  handleDeleteEvent = () => {
+    fetch(`http://localhost:3000/events/${this.props.selectedEvent.id}`, {
+      method: "DELETE",
   })
-
-  this.props.handleJoinEvent(user)
-}
-
-leaveEvent = (user) => {
-  this.setState({
-    attendance: false
-  })
-
-  this.props.handleLeaveEvent(user)
-}
+    .then(r => r.json())
+    .then (() => {
+      this.props.deleteEvent(this.props.selectedEvent.id)
+      
+    })
+    
+  }
 
   render() {
     let eventObj = this.props.selectedEvent;
     let users = this.props.selectedEvent.users;
-    let filteredUsers = users.filter((user) => user === this.props.userLogIn[0])
+    let filteredUsers = Object.keys(eventObj).length > 0 ? users.filter((user) => user === this.props.userLogIn[0]) : [];
     console.log(filteredUsers.length)
     
     return (
@@ -43,10 +53,11 @@ leaveEvent = (user) => {
         <p>Time: {eventObj.time}</p>
         <p>Location: {eventObj.location}</p>
         <p>Price: ${eventObj.price}</p>
+        { this.props.userLogIn[0].id === eventObj.user_id && <button className="navbar-btn" onClick={() => this.handleDeleteEvent()}>Cancel Event</button>}
         </div>
         <div className="attendee-list">
           <h2 className="attendees">Attendees:</h2>
-          {eventObj.users.map((userObj) => (
+          {Object.keys(eventObj).length > 0 && eventObj.users.map((userObj) => (
             <div className="attendee">
               <h3>{userObj.username}</h3>
               {/* fix styling when joing an event */}

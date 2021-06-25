@@ -23,6 +23,8 @@ img {
 .navbar-img {
   width: 100px;
   height: 100px;
+  border-color: black;
+  border-radius: 16px;
 }
 
 .container-navbar {
