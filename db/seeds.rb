@@ -6,7 +6,7 @@ Event.destroy_all
 
 puts "creating users🙎‍♂️🙍‍♀️🙎"
 10.times do 
-    User.create(username: Faker::Name.unique.name, age: Faker::Number.between(from: 18, to: 60), profile_img: Faker::Avatar.image(size: "50x50"), password: Faker::Alphanumeric.alphanumeric(number: 10))
+    User.create(username: Faker::Name.unique.name, age: Faker::Number.between(from: 18, to: 60), profile_img: Faker::Avatar.image(size: "300x300"), password: Faker::Alphanumeric.alphanumeric(number: 10))
 end
 
 

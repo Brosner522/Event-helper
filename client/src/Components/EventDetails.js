@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import EditForm from "./EditForm";
 class EventDetails extends Component {
 
   state = {
@@ -36,7 +36,8 @@ class EventDetails extends Component {
   render() {
     let eventObj = this.props.selectedEvent;
     let users = this.props.selectedEvent.users;
-    let filteredUsers = Object.keys(eventObj).length > 0 ? users.filter((user) => user === this.props.userLogIn[0]) : [];
+    console.log(users)
+    let filteredUsers = users.length > 0 ? users.filter((user) => user === this.props.userLogIn[0]) : [];
     console.log(filteredUsers.length)
     
     return (
@@ -54,6 +55,8 @@ class EventDetails extends Component {
         <p>Location: {eventObj.location}</p>
         <p>Price: ${eventObj.price}</p>
         { this.props.userLogIn[0].id === eventObj.user_id && <button className="navbar-btn" onClick={() => this.handleDeleteEvent()}>Cancel Event</button>}
+        { this.props.userLogIn[0].id === eventObj.user_id && <button className="navbar-btn">Edit</button>
+        && <EditForm userLogIn={this.props.userLogIn} editEvent ={this.props.editEvent} selectedEvent = {this.props.selectedEvent}/>}
         </div>
         <div className="attendee-list">
           <h2 className="attendees">Attendees:</h2>

@@ -66,6 +66,38 @@ class App extends Component {
       });
   };
 
+  editEvent = (editedEvent) => {
+    console.log(editedEvent);
+    
+    const reqMethod = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(editedEvent),
+    };
+
+    let index = this.state.events.indexOf(this.state.selectedEvent)
+
+    fetch(`http://localhost:3000/events/${editedEvent.id}`, reqMethod)
+      .then((res) => res.json())
+      .then((returnEvent) => {
+        if (returnEvent.errors) {
+          alert(returnEvent.errors.join("\n"));
+        } else {
+          console.log(returnEvent)
+          console.log(returnEvent.users)
+          let updatedEvents = [...this.state.events];
+          updatedEvents[index] = returnEvent
+
+          this.setState({
+            selectedEvent: returnEvent,
+            events: updatedEvents
+          });
+        }
+      });
+  };
+
   selectEvent = (eventObj) => {
     this.setState({
       selectedEvent: eventObj,
@@ -137,7 +169,6 @@ class App extends Component {
           createEvent={this.createEvent}
           handleHome={this.handleHome}
           handleLogout={this.handleLogout}
-          handleClick={this.handleClick}
           userLogIn={this.state.userLogIn}
         />
 
@@ -174,6 +205,7 @@ class App extends Component {
             component={(props) => (
               <EventDetails
                 {...props}
+                editEvent={this.editEvent}
                 selectedEvent={this.state.selectedEvent}
                 userLogIn={this.state.userLogIn}
                 handleJoinEvent={this.handleJoinEvent} 

@@ -55,7 +55,7 @@ export default class EventForm extends Component {
                     <br />
                     <input onChange={this.handleChange} type="text" name="img" placeholder="Enter event image..." className="input-text" />
                     <br />
-                    <input  onClick={this.createEvent} type="submit" name="submit" value="Submit" className="button" />
+                    <input type="submit" name="submit" value="Submit" className="button" />
                 </form>
 
             </div>
