@@ -11,7 +11,6 @@ export default class Login extends Component {
 
   handleLogin = (e) => {
     e.preventDefault();
-    // console.log(e)
     let filteredArray = this.props.users.filter((user) => {
       return user.username.toLowerCase() === e.target[0].value.toLowerCase();
     });
@@ -39,12 +38,16 @@ export default class Login extends Component {
       body: JSON.stringify(newUser),
     }).then((res) => {
       if (res.status === 201) {
-        res.json()
-          .then(data => {
-            const user = data.user;
-            alert("You can now log in");
-            this.props.addNewSignup({id: user.id, age:user.age, profile_img:user.profile_img, username: user.username });
-          })
+        res.json().then((data) => {
+          const user = data.user;
+          alert("You can now log in");
+          this.props.addNewSignup({
+            id: user.id,
+            age: user.age,
+            profile_img: user.profile_img,
+            username: user.username,
+          });
+        });
       } else if (res.status === 400) {
         alert("Please try again");
       }

@@ -1,12 +1,10 @@
 class EventsController < ApplicationController
 
-    # get all events
     def index 
         events = Event.all
         render json: events 
     end
 
-    # get one event
     def show 
         event = Event.find_by(id: params[:id])
         if event
@@ -16,7 +14,6 @@ class EventsController < ApplicationController
         end
     end
 
-    # create an event 
     def create
         event = Event.new(event_params)
 
@@ -28,7 +25,6 @@ class EventsController < ApplicationController
         end
     end
 
-    # update an event 
     def update
         event = Event.find_by(id: params[:id])
         if event
@@ -39,7 +35,6 @@ class EventsController < ApplicationController
         end
     end
 
-    # delete an event 
     def destroy 
         event = Event.find_by(id: params[:id])
         if event 
@@ -53,7 +48,6 @@ class EventsController < ApplicationController
 
     private 
 
-    # create helper 
     def event_params
         params.permit(:name, :date, :time, :location, :price, :description, :img, :user_id)
     end

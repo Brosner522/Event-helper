@@ -1,7 +1,7 @@
 import "./App.css";
 import { Route, Switch } from "react-router-dom";
 import { Component } from "react";
-import { withRouter, Redirect } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import Login from "./Components/Login";
 import EventDetails from "./Components/EventDetails";
 import EventContainer from "./Components/EventContainer";
@@ -12,17 +12,16 @@ class App extends Component {
     events: [],
     users: [],
     selectedEvent: {},
-    userLogIn: []
+    userLogIn: [],
   };
 
   deleteEvent = (eventId) => {
     this.setState({
       selectedEvent: {},
-      events: this.state.events.filter(event => eventId !== event.id)
-    })
-    this.props.history.push("/events")
-    // let eventToDelete = this.state.selectedEvent[0]
-  }
+      events: this.state.events.filter((event) => eventId !== event.id),
+    });
+    this.props.history.push("/events");
+  };
 
   handleLogout = () => {
     this.props.history.push("/");
@@ -34,12 +33,6 @@ class App extends Component {
       ? this.props.history.push("/events")
       : this.props.history.push("/");
   };
-
-  // addEvent = (newEvent) => {
-  //   this.setState({
-  //     events: [...this.state.events, newEvent]
-  //   });
-  // };
 
   createEvent = (newEvent) => {
     console.log(newEvent);
@@ -67,8 +60,6 @@ class App extends Component {
   };
 
   editEvent = (editedEvent) => {
-    console.log(editedEvent);
-    
     const reqMethod = {
       method: "PATCH",
       headers: {
@@ -77,7 +68,7 @@ class App extends Component {
       body: JSON.stringify(editedEvent),
     };
 
-    let index = this.state.events.indexOf(this.state.selectedEvent)
+    let index = this.state.events.indexOf(this.state.selectedEvent);
 
     fetch(`http://localhost:3000/events/${editedEvent.id}`, reqMethod)
       .then((res) => res.json())
@@ -85,14 +76,14 @@ class App extends Component {
         if (returnEvent.errors) {
           alert(returnEvent.errors.join("\n"));
         } else {
-          console.log(returnEvent)
-          console.log(returnEvent.users)
+          console.log(returnEvent);
+          console.log(returnEvent.users);
           let updatedEvents = [...this.state.events];
-          updatedEvents[index] = returnEvent
+          updatedEvents[index] = returnEvent;
 
           this.setState({
             selectedEvent: returnEvent,
-            events: updatedEvents
+            events: updatedEvents,
           });
         }
       });
@@ -119,33 +110,30 @@ class App extends Component {
 
   handleJoinEvent = (userLogIn) => {
     console.log(userLogIn);
-    console.log(this.state.events)
+    console.log(this.state.events);
 
-    //selected event
-    let oldUsers = this.state.selectedEvent.users; 
+    let oldUsers = this.state.selectedEvent.users;
     let newUsers = [...oldUsers, userLogIn[0]];
 
-    let updatedEvent = this.state.selectedEvent
+    let updatedEvent = this.state.selectedEvent;
     updatedEvent.users = newUsers;
 
     this.setState({
       selectedEvent: updatedEvent,
     });
-  };  
+  };
 
   handleLeaveEvent = (userLogIn) => {
+    let oldUsers = this.state.selectedEvent.users;
+    let newUsers = oldUsers.filter((user) => user !== userLogIn[0]);
 
-     let oldUsers = this.state.selectedEvent.users; 
-     let newUsers = oldUsers.filter((user) => user !== userLogIn[0])
- 
-     let updatedEvent = this.state.selectedEvent
-     updatedEvent.users = newUsers;
- 
-     this.setState({
-       selectedEvent: updatedEvent,
-     });
+    let updatedEvent = this.state.selectedEvent;
+    updatedEvent.users = newUsers;
 
-  }
+    this.setState({
+      selectedEvent: updatedEvent,
+    });
+  };
 
   componentDidMount() {
     fetch("http://localhost:3000/events")
@@ -195,7 +183,7 @@ class App extends Component {
                 {...props}
                 userLogIn={this.state.userLogIn}
                 selectEvent={this.selectEvent}
-                events={this.state.events} 
+                events={this.state.events}
               />
             )}
           />
@@ -208,10 +196,9 @@ class App extends Component {
                 editEvent={this.editEvent}
                 selectedEvent={this.state.selectedEvent}
                 userLogIn={this.state.userLogIn}
-                handleJoinEvent={this.handleJoinEvent} 
-                handleLeaveEvent={this.handleLeaveEvent} 
+                handleJoinEvent={this.handleJoinEvent}
+                handleLeaveEvent={this.handleLeaveEvent}
                 deleteEvent={this.deleteEvent}
-                // users={this.state.users} 
               />
             )}
           />
