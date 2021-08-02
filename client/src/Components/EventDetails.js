@@ -21,14 +21,17 @@ class EventDetails extends Component {
   };
 
   handleDeleteEvent = () => {
-    fetch(`http://localhost:3000/events/${this.props.selectedEvent.id}`, {
+    const eventId = this.props.selectedEvent.id;
+    fetch(`http://localhost:3000/events/${eventId}`, {
       method: "DELETE",
     })
       .then((r) => r.json())
       .then(() => {
-        this.props.deleteEvent(this.props.selectedEvent.id);
+        this.props.deleteEvent(this.state.selectedEvent);
       });
   };
+
+  
 
   render() {
     let eventObj = this.props.selectedEvent;

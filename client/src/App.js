@@ -18,7 +18,7 @@ class App extends Component {
   deleteEvent = (eventId) => {
     this.setState({
       selectedEvent: {},
-      events: this.state.events.filter((event) => eventId !== event.id),
+      events: this.state.events.filter((event) => eventId === event.id),
     });
     this.props.history.push("/events");
   };
@@ -76,8 +76,8 @@ class App extends Component {
         if (returnEvent.errors) {
           alert(returnEvent.errors.join("\n"));
         } else {
-          console.log(returnEvent);
-          console.log(returnEvent.users);
+          // console.log(returnEvent);
+          // console.log(returnEvent.users);
           let updatedEvents = [...this.state.events];
           updatedEvents[index] = returnEvent;
 

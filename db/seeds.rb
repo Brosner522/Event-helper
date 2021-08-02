@@ -6,12 +6,12 @@ Event.destroy_all
 
 puts "creating users🙎‍♂️🙍‍♀️🙎"
 10.times do 
-    User.create(username: Faker::Name.unique.name, age: Faker::Number.between(from: 18, to: 60), profile_img: Faker::Avatar.image(size: "300x300"), password: Faker::Alphanumeric.alphanumeric(number: 10))
+    User.create(username: Faker::Name.unique.name, age: Faker::Number.between(from: 18, to: 60), profile_img: Faker::Avatar.image(size: "300x300"), password_digest: Faker::Alphanumeric.alphanumeric(number: 10))
 end
-
-# 1.times do 
-#     User.create(username: "brosner", age: 25, profile_img: Faker::Avatar.image(size: "300x300"), password: "password")
-# end
+ 
+1.times do 
+    User.create(username: "brosner", age: 25, profile_img: Faker::Avatar.image(size: "300x300"), password_digest: "password" )
+end
 
 puts "making events..."
 Event.create(user_id: Faker::Number.between(from: 1, to: 10), name: "Gardening in the Garden", date: Faker::Date.between(from: '2021-09-23', to: '2022-12-25'), time: "10:15 am", location: "Madison Square Garden" , price: rand(20..100), description:"This workshop is designed to help your group build a strong foundation for your group's leadership and decision-making structures." , img: "https://2wfm7hcgwyz2qtc6fza10emm-wpengine.netdna-ssl.com/wp-content/uploads/legacy/104/1-2048x1152.jpg" ) 

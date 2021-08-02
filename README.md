@@ -1,162 +1,26 @@
-# Project Template: React/Rails API
+Event Helper is a public webpage where users are welcome to create and post events for other users to browse. Users can easily create new events   
 
-## Description
+Barakoton is an at-home fitness application that allows users to view workouts and create sessions after completing a workout.  Users can easily log changes in their weight on the profile page.  To make working out easier for our users they also have the ability to save workouts to a bookmarked page for a later date!
 
-This project is scaffolded so that you can build a React frontend and Rails
-backend together, and easily deploy them to Heroku.
 
-## Requirements
 
-- Ruby 2.7.3
-- NodeJS (v14 or higher), and npm
-- Heroku CLI
-- Postgresql
+In this application a user will be able to:
+- Log in.
+- Log out.
+- Create an account with the user's name, age, picture, and password. 
+- Browse all available events on the community board.
+- View current attendees for an event.
+- Join or leave an event.
+- Create a new event to be posted on the community board.
 
-See [Environment Setup](#environment-setup) below for instructions on installing
-these tools if you don't already have them.
+Setup:
+1. Clone this repository to your local machine.
+2. In the root directory run 'bundle install' to install the required gems.
+3. Run 'rails db:migrate' & 'rails db:seed' to set up the database.
+4. Run 'rails s' in your terminal to start the server.
 
-## Setup
 
-**Fork and clone this repository**.
+Developer: Barak Rosner
+If you have any further questions regarding this application please feel free to reach out to me at rosnerbb@gmail.com
 
-Then run:
 
-```sh
-bundle install
-rails db:create
-npm install --prefix client
-```
-
-You can use the following commands to run the application:
-
-- `rails s`: run the backend on [http://localhost:3000](http://localhost:3000)
-- `npm start --prefix client`: run the frontend on
-  [http://localhost:4000](http://localhost:4000)
-- `rails start`: run the frontend and backend together with one command
-
-Make sure to also update this README to include documentation about
-your project. Here's a list of some [awesome readmes][] for inspiration.
-
-## Deploying
-
-This application has all the starter code needed to help you deploy your
-application to Heroku. It's recommended to deploy your project early and push up
-changes often to ensure that your code works equally well in production and
-development environments.
-
-To deploy, first log in to your Heroku account using the Heroku CLI:
-
-```sh
-heroku login
-```
-
-Create the new Heroku app:
-
-```sh
-heroku create my-app-name
-```
-
-Add the builds for Heroku to run the Rails app on Ruby and build the React app
-on Node:
-
-```sh
-heroku buildpacks:add heroku/nodejs --index 1
-heroku buildpacks:add heroku/ruby --index 2
-```
-
-To deploy, commit your code and push the changes to Heroku:
-
-```sh
-git add .
-git commit -m 'Commit message'
-git push heroku main
-```
-
-> Note: depending on your Git configuration, your default branch might be named
-> `master` or `main`. You can verify which by running
-> `git branch --show-current`. If it's `master`, you'll need to run
-> `git push heroku master` instead.
-
-Any time you have changes to deploy, just make sure your changes are committed
-on the main branch of your repo, and push those changes to Heroku to deploy
-them.
-
-You can view your deployed app with:
-
-```sh
-heroku open
-```
-
-## Environment Setup
-
-### Ruby
-
-Ensure you are running the
-[latest Ruby release supported by Heroku][heroku ruby]. At the time of writing,
-that's `2.7.3`. You can verify with:
-
-```sh
-ruby -v
-```
-
-If you don't see `2.7.3`, you can install it and set it as the default version:
-
-```sh
-rvm install 2.7.3
-rvm --default use 2.7.3
-```
-
-You should also install the latest versions of `bundler` and `rails`:
-
-```sh
-gem install bundler
-gem install rails
-```
-
-[heroku ruby]: https://devcenter.heroku.com/articles/ruby-support#supported-runtimes
-
-### Install NodeJS
-
-Verify you are running a recent version of Node with:
-
-```sh
-node -v
-```
-
-If your Node version is less than 14, update it with:
-
-```sh
-nvm install node
-```
-
-You can also update your npm version with:
-
-```sh
-npm i -g npm
-```
-
-### Install the Heroku CLI
-
-Follow this guide to install Heroku CLI (if you don't already have it):
-
-- [https://devcenter.heroku.com/articles/heroku-cli#download-and-install](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
-
-### Install Postgresql
-
-Heroku requires that you use Postgresql for your database instead of SQLite.
-Postgresql (or just Postgres for short) is an advanced database management
-system with more features than SQLite. If you don't already have it installed,
-you'll need to set it up.
-
-To install Postgres for WSL, follow this guide:
-
-- [https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-database#install-postgresql][postgresql wsl]
-
-To install Postgres for OSX, you can use Homebrew:
-
-```sh
-brew install postgresql
-```
-
-[awesome readmes]: https://github.com/matiassingers/awesome-readme
-[postgresql wsl]: https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-database#install-postgresql
